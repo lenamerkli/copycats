@@ -25,6 +25,9 @@ import com.copycatsplus.copycats.content.copycat.halfpanel.CopycatHalfPanelBlock
 import com.copycatsplus.copycats.content.copycat.halfpanel.CopycatHalfPanelModel;
 import com.copycatsplus.copycats.content.copycat.layer.CopycatLayerBlock;
 import com.copycatsplus.copycats.content.copycat.layer.CopycatLayerModel;
+import com.copycatsplus.copycats.content.copycat.pane.CopycatPaneBlock;
+import com.copycatsplus.copycats.content.copycat.pane.CopycatPaneModel;
+import com.copycatsplus.copycats.content.copycat.pane.WrappedPaneBlock;
 import com.copycatsplus.copycats.content.copycat.pressure_plate.*;
 import com.copycatsplus.copycats.content.copycat.slab.CopycatSlabBlock;
 import com.copycatsplus.copycats.content.copycat.slab.CopycatSlabModel;
@@ -398,6 +401,25 @@ public class CCBlocks {
                     .transform(customItemModel("copycat_base", "pressure_plate"))
                     .register();
 
+    public static final BlockEntry<WrappedPaneBlock> WRAPPED_COPYCAT_PANE =
+            REGISTRATE.block("wrapped_copycat_pane", WrappedPaneBlock::new)
+                    .initialProperties(() -> Blocks.GLASS_PANE)
+                    .onRegister(b -> CopycatPaneBlock.pane = b)
+                    .blockstate((c, p) -> p.simpleBlock(c.getEntry(), p.models().withExistingParent("wrapped_copycat_pane", "block/barrier")))
+                    .register();
+
+    public static final BlockEntry<CopycatPaneBlock> COPYCAT_PANE =
+            REGISTRATE.block("copycat_pane", CopycatPaneBlock::new)
+                    .transform(BuilderTransformers.copycat())
+                    .properties(p -> p.isValidSpawn((state, level, pos, entity) -> false))
+                    .transform(FeatureToggle.register())
+                    .tag(Tags.Blocks.GLASS_PANES)
+                    .onRegister(CreateRegistrate.blockModel(() -> CopycatPaneModel::new))
+                    .item()
+                    .transform(customItemModel("copycat_base", "pane"))
+                    .register();
+
     public static void register() {
+
     }
 }
