@@ -46,7 +46,8 @@ public class CCCreativeTabs {
             CCBlocks.COPYCAT_WOODEN_PRESSURE_PLATE,
             CCBlocks.COPYCAT_STONE_PRESSURE_PLATE,
             CCBlocks.COPYCAT_HEAVY_WEIGHTED_PRESSURE_PLATE,
-            CCBlocks.COPYCAT_LIGHT_WEIGHTED_PRESSURE_PLATE
+            CCBlocks.COPYCAT_LIGHT_WEIGHTED_PRESSURE_PLATE,
+            CCBlocks.COPYCAT_PANE
     );
 
     public static final RegistryObject<CreativeModeTab> MAIN = CREATIVE_MODE_TABS.register("main", () -> CreativeModeTab.builder()

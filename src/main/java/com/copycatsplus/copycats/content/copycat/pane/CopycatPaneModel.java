@@ -1,5 +1,6 @@
 package com.copycatsplus.copycats.content.copycat.pane;
 
+import com.copycatsplus.copycats.Copycats;
 import com.copycatsplus.copycats.content.copycat.SimpleCopycatModel;
 import com.simibubi.create.foundation.utility.Iterate;
 import net.minecraft.client.resources.model.BakedModel;
@@ -23,7 +24,7 @@ public class CopycatPaneModel extends SimpleCopycatModel {
         for (Direction direction : Iterate.horizontalDirections) {
             if (state.getValue(CopycatPaneBlock.propertyForDirection(direction)))
                 present.add(direction);
-        }
+            }
         //middle
         assemblePiece(context, 0, false,
                 vec3(7, 0, 7),
@@ -31,8 +32,9 @@ public class CopycatPaneModel extends SimpleCopycatModel {
                 cull(EAST | (present.contains(Direction.SOUTH) ? SOUTH : 0)| (present.contains(Direction.NORTH) ? NORTH : 0)| (present.contains(Direction.EAST) ? EAST : 0)| (present.contains(Direction.WEST) ? WEST : 0)));
         assemblePiece(context, 0, false,
                 vec3(8, 0, 7),
-                aabb(1, 16, 2).move(7, 0, 7),
+                aabb(1, 16, 2).move(8, 0, 7),
                 cull(WEST| (present.contains(Direction.SOUTH) ? SOUTH : 0)| (present.contains(Direction.NORTH) ? NORTH : 0)| (present.contains(Direction.EAST) ? EAST : 0)| (present.contains(Direction.WEST) ? WEST : 0)));
+
         if (!present.isEmpty()) {
             for (Direction direction : present) {
                 switch (direction) {
