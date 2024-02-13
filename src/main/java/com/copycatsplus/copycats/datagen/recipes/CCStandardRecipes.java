@@ -180,6 +180,8 @@ public class CCStandardRecipes extends CreateRecipeProvider {
 
     GeneratedRecipe COPYCAT_PANE = copycat(CCBlocks.COPYCAT_PANE, 6);
 
+    GeneratedRecipe COPYCAT_HORIZONTAL_PANE = copycat(CCBlocks.COPYCAT_HORIZONTAL_PANE, 6);
+
     String currentFolder = "";
 
     Marker enterFolder(String folder) {

@@ -79,6 +79,8 @@ public class CCShapes {
     public static final VoxelShaper HALF_LAYER_TOP_14PX = shape(0, 2, 0, 16, 16, 8).forHorizontal(Direction.NORTH);
     public static final VoxelShaper HALF_LAYER_TOP_16PX = shape(0, 0, 0, 16, 16, 8).forHorizontal(Direction.NORTH);
 
+    public static final VoxelShaper HORIZONTAL_PANE = shape(0, 7, 0, 16, 9, 16).forAxis();
+
     private static Builder shape(VoxelShape shape) {
         return new Builder(shape);
     }

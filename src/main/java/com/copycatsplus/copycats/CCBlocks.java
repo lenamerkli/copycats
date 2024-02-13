@@ -25,9 +25,7 @@ import com.copycatsplus.copycats.content.copycat.halfpanel.CopycatHalfPanelBlock
 import com.copycatsplus.copycats.content.copycat.halfpanel.CopycatHalfPanelModel;
 import com.copycatsplus.copycats.content.copycat.layer.CopycatLayerBlock;
 import com.copycatsplus.copycats.content.copycat.layer.CopycatLayerModel;
-import com.copycatsplus.copycats.content.copycat.pane.CopycatPaneBlock;
-import com.copycatsplus.copycats.content.copycat.pane.CopycatPaneModel;
-import com.copycatsplus.copycats.content.copycat.pane.WrappedPaneBlock;
+import com.copycatsplus.copycats.content.copycat.pane.*;
 import com.copycatsplus.copycats.content.copycat.pressure_plate.*;
 import com.copycatsplus.copycats.content.copycat.slab.CopycatSlabBlock;
 import com.copycatsplus.copycats.content.copycat.slab.CopycatSlabModel;
@@ -417,6 +415,17 @@ public class CCBlocks {
                     .onRegister(CreateRegistrate.blockModel(() -> CopycatPaneModel::new))
                     .item()
                     .transform(customItemModel("copycat_base", "pane"))
+                    .register();
+
+    public static final BlockEntry<CopycatHorizontalPaneBlock> COPYCAT_HORIZONTAL_PANE =
+            REGISTRATE.block("copycat_horizontal_pane", CopycatHorizontalPaneBlock::new)
+                    .transform(BuilderTransformers.copycat())
+                    .properties(p -> p.isValidSpawn((state, level, pos, entity) -> false))
+                    .transform(FeatureToggle.register())
+                    .tag(Tags.Blocks.GLASS_PANES)
+                    .onRegister(CreateRegistrate.blockModel(() -> CopycatHorizontalPaneModel::new))
+                    .item()
+                    .transform(customItemModel("copycat_base", "horizontal_pane"))
                     .register();
 
     public static void register() {

@@ -54,7 +54,7 @@ public class CopycatPaneBlock extends WaterloggedCopycatWrappedBlock<WrappedPane
 
     @Override
     public boolean canConnectTexturesToward(BlockAndTintGetter reader, BlockPos fromPos, BlockPos toPos, BlockState state) {
-        return false;
+        return reader.getBlockState(toPos).is(this);
     }
 
     @Override
@@ -80,6 +80,21 @@ public class CopycatPaneBlock extends WaterloggedCopycatWrappedBlock<WrappedPane
     @Override
     public void onPlace(BlockState pState, Level pLevel, BlockPos pPos, BlockState pOldState, boolean pIsMoving) {
         pane.onPlace(pState, pLevel, pPos, pOldState, pIsMoving);
+    }
+
+    @Override
+    public boolean hidesNeighborFace(BlockGetter level, BlockPos pos, BlockState state, BlockState neighborState,
+                                     Direction dir) {
+        if (state.is(this) == neighborState.is(this)) {
+            return (getMaterial(level, pos).skipRendering(getMaterial(level, pos.relative(dir)), dir.getOpposite()));
+        }
+
+        return getMaterial(level, pos).skipRendering(neighborState, dir.getOpposite());
+    }
+
+    @Override
+    public boolean supportsExternalFaceHiding(BlockState state) {
+        return true;
     }
 
     public static BooleanProperty propertyForDirection(Direction direction) {
