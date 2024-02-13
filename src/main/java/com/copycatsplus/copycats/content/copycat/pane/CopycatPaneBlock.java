@@ -98,20 +98,12 @@ public class CopycatPaneBlock extends WaterloggedCopycatWrappedBlock<WrappedPane
     }
 
     public static BooleanProperty propertyForDirection(Direction direction) {
-        switch (direction) {
-            case NORTH -> {
-                return NORTH;
-            }
-            case SOUTH -> {
-                return SOUTH;
-            }
-            case EAST -> {
-                return EAST;
-            }
-            case WEST -> {
-                return WEST;
-            }
+        return switch (direction) {
+            case NORTH -> NORTH;
+            case SOUTH -> SOUTH;
+            case EAST -> EAST;
+            case WEST -> WEST;
             default -> throw new IllegalStateException("Direction must be horizontal");
-        }
+        };
     }
 }
