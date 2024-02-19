@@ -23,6 +23,9 @@ import com.copycatsplus.copycats.content.copycat.fencegate.WrappedFenceGateBlock
 import com.copycatsplus.copycats.content.copycat.halflayer.CopycatHalfLayerBlock;
 import com.copycatsplus.copycats.content.copycat.halfpanel.CopycatHalfPanelBlock;
 import com.copycatsplus.copycats.content.copycat.halfpanel.CopycatHalfPanelModel;
+import com.copycatsplus.copycats.content.copycat.ladder.CopycatLadderBlock;
+import com.copycatsplus.copycats.content.copycat.ladder.CopycatLadderModel;
+import com.copycatsplus.copycats.content.copycat.ladder.WrappedLadderBlock;
 import com.copycatsplus.copycats.content.copycat.layer.CopycatLayerBlock;
 import com.copycatsplus.copycats.content.copycat.layer.CopycatLayerModel;
 import com.copycatsplus.copycats.content.copycat.pressure_plate.*;
@@ -396,6 +399,25 @@ public class CCBlocks {
                     .onRegister(CreateRegistrate.blockModel(() -> CopycatPressurePlateModel::new))
                     .item()
                     .transform(customItemModel("copycat_base", "pressure_plate"))
+                    .register();
+
+    public static final BlockEntry<WrappedLadderBlock> WRAPPED_COPYCAT_LADDER =
+            REGISTRATE.block("wrapped_copycat_ladder", WrappedLadderBlock::new)
+                    .initialProperties(() -> Blocks.LADDER)
+                    .onRegister(b -> CopycatLadderBlock.ladder = b)
+                    .tag(BlockTags.CLIMBABLE)
+                    .blockstate((c, p) -> p.simpleBlock(c.getEntry(), p.models().withExistingParent("wrapped_copycat_ladder", "block/barrier")))
+                    .register();
+
+    public static final BlockEntry<CopycatLadderBlock> COPYCAT_LADDER =
+            REGISTRATE.block("copycat_ladder", CopycatLadderBlock::new)
+                    .transform(BuilderTransformers.copycat())
+                    .properties(p -> p.isValidSpawn((state, level, pos, entity) -> false))
+                    .tag(BlockTags.CLIMBABLE)
+                    .transform(FeatureToggle.register())
+                    .onRegister(CreateRegistrate.blockModel(() -> CopycatLadderModel::new))
+                    .item()
+                    .transform(customItemModel("copycat_base", "ladder"))
                     .register();
 
     public static void register() {
