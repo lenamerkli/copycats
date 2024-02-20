@@ -96,6 +96,27 @@ public class CopycatLadderBlock extends CopycatBlock implements ICopycatWithWrap
     }
 
     @Override
+    public boolean isIgnoredConnectivitySide(BlockAndTintGetter reader, BlockState state, Direction face,
+                                             BlockPos fromPos, BlockPos toPos) {
+        return true;
+    }
+
+    @Override
+    public boolean canFaceBeOccluded(BlockState state, Direction face) {
+        return false;
+    }
+
+    @Override
+    public boolean shouldFaceAlwaysRender(BlockState state, Direction face) {
+        return true;
+    }
+
+    @Override
+    public boolean supportsExternalFaceHiding(BlockState state) {
+        return true;
+    }
+
+    @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand,
                                  BlockHitResult ray) {
         InteractionResult result = super.use(state, world, pos, player, hand, ray);
