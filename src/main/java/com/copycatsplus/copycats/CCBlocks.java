@@ -20,6 +20,8 @@ import com.copycatsplus.copycats.content.copycat.fence.WrappedFenceBlock;
 import com.copycatsplus.copycats.content.copycat.fencegate.CopycatFenceGateBlock;
 import com.copycatsplus.copycats.content.copycat.fencegate.CopycatFenceGateModel;
 import com.copycatsplus.copycats.content.copycat.fencegate.WrappedFenceGateBlock;
+import com.copycatsplus.copycats.content.copycat.ghost_block.CopycatGhostBlock;
+import com.copycatsplus.copycats.content.copycat.ghost_block.CopycatGhostBlockModel;
 import com.copycatsplus.copycats.content.copycat.halflayer.CopycatHalfLayerBlock;
 import com.copycatsplus.copycats.content.copycat.halfpanel.CopycatHalfPanelBlock;
 import com.copycatsplus.copycats.content.copycat.halfpanel.CopycatHalfPanelModel;
@@ -402,6 +404,17 @@ public class CCBlocks {
                     .onRegister(CreateRegistrate.blockModel(() -> CopycatPressurePlateModel::new))
                     .item()
                     .transform(customItemModel("copycat_base", "pressure_plate"))
+                    .register();
+
+    public static final BlockEntry<CopycatGhostBlock> COPYCAT_GHOST_BLOCK =
+            REGISTRATE.block("copycat_ghost_block", CopycatGhostBlock::new)
+                    .transform(BuilderTransformers.copycat())
+                    .properties(p -> p.isValidSpawn((state, level, pos, entity) -> false)
+                            .noCollission())
+                    .transform(FeatureToggle.register())
+                    .onRegister(CreateRegistrate.blockModel(() -> CopycatGhostBlockModel::new))
+                    .item()
+                    .transform(customItemModel("copycat_base", "ghost_block"))
                     .register();
 
     public static void register() {
